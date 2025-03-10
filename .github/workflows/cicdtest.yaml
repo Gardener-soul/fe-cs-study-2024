@@ -1,0 +1,18 @@
+name: Markdown Lint Check
+
+on:
+  push:
+    branches: [gardener-cicd]
+  pull_request:
+    branches: [gardener-cicd]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install markdownlint-cli
+        run: npm install -g markdownlint-cli
+      - name: Run markdown lint check
+        run: markdownlint '**/*.md'
